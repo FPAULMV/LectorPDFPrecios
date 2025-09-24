@@ -1,0 +1,21 @@
+# Plantilla
+
+[1001]
+"id" = "1001" # Igual que la tabla -> [1001]
+"level" = ""
+"msg" = ""
+"module_func" = ""
+
+# ---
+
+[1002]
+"id" = "1002" # Igual que la tabla -> [1002]
+"level" = "WARN"
+"msg" = "No se encontro el archivo 'plantillas_logs.toml' y fue creado nuevamente con la plantilla por defecto."
+"module_func" = "log_writer.py -> EscribirLogs.leer_plantillas_toml"
+
+[1003]
+"id" = "1003"
+"level" = "DEBUG"
+"msg" = "Informacion de 'plantillas_logs.toml' cargada correctamente."
+"module_func" = "log_writer.py -> EscribirLogs.leer_plantillas_toml"
