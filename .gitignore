@@ -1,2 +1,4 @@
 .env
 docs/
+src\__pycache__
+*.pyc
