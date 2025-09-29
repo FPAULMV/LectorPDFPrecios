@@ -1,0 +1,72 @@
+{
+    "0": {
+        "id": "1000",
+        "level": "INFO",
+        "msg": "EMPTY",
+        "module_func": "EMPTY",
+        "time_start": "0",
+        "time_end": "0",
+        "execution_time_seconds": "0",
+        "time_stamp": "0"
+    },
+    "1": {
+        "id": "1001",
+        "level": "Hola",
+        "msg": "Como",
+        "module_func": "Vas",
+        "time_start": "2025-09-29 14:48:49",
+        "time_end": "2025-09-29 14:48:50",
+        "execution_time_seconds": "1.00",
+        "time_stamp": "2025-09-29 14:48:50"
+    },
+    "2": {
+        "id": "1002",
+        "level": "1002",
+        "msg": "1002",
+        "module_func": "1002",
+        "time_start": "2025-09-29 14:48:50",
+        "time_end": "2025-09-29 14:48:51",
+        "execution_time_seconds": "1.00",
+        "time_stamp": "2025-09-29 14:48:51"
+    },
+    "3": {
+        "id": "1001",
+        "level": "Hola",
+        "msg": "Como",
+        "module_func": "Vas",
+        "time_start": "2025-09-29 14:49:50",
+        "time_end": "2025-09-29 14:49:51",
+        "execution_time_seconds": "1.00",
+        "time_stamp": "2025-09-29 14:49:51"
+    },
+    "4": {
+        "id": "1002",
+        "level": "1002",
+        "msg": "1002",
+        "module_func": "1002",
+        "time_start": "2025-09-29 14:49:51",
+        "time_end": "2025-09-29 14:49:52",
+        "execution_time_seconds": "1.00",
+        "time_stamp": "2025-09-29 14:49:52"
+    },
+    "5": {
+        "id": "1001",
+        "level": "Hola",
+        "msg": "Como",
+        "module_func": "Vas",
+        "time_start": "2025-09-29 14:50:03",
+        "time_end": "2025-09-29 14:50:04",
+        "execution_time_seconds": "1.00",
+        "time_stamp": "2025-09-29 14:50:04"
+    },
+    "6": {
+        "id": "1002",
+        "level": "1002",
+        "msg": "1002",
+        "module_func": "1002",
+        "time_start": "2025-09-29 14:50:04",
+        "time_end": "2025-09-29 14:50:05",
+        "execution_time_seconds": "1.00",
+        "time_stamp": "2025-09-29 14:50:05"
+    }
+}

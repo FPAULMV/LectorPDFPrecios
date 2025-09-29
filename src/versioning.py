@@ -3,7 +3,6 @@ __version__ = "1.0.0"
 __release_date__ = "2025-09-18"
 __author__ = "© Paul Morales -> paul.morales@fpaulmv.com"
 
-
 class Version():
     def __init__(self):
         self.app_version()

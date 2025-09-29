@@ -1,6 +1,6 @@
-
-import json, tomllib
+import versioning, json, tomllib, tomli_w
 from pathlib import Path
+from datetime import datetime
 
 
 # Rutas a archivos necesarios para app. (En crudito)
@@ -8,36 +8,13 @@ RUTA_PLANTILLAS_LOGS = Path(r"utils\plantillas_logs.toml")
 RUTA_SETTINGS_JSON = Path(r"utils\settings.json")
 RUTA_LOGS_JSON = Path(r"..\storage\logs\log_app_.json")
 
-
+#Plantilla para json vacio. 
+JSON_VACIO_PLANTILLA = {"0": {"id": "1000", "level": "INFO", "msg": "EMPTY", "module_func": "EMPTY", "time_start": "0", "time_end": "0", "execution_time_seconds": "0", "time_stamp":"0"}}
 # Texto por default en caso de que el archivo de plantillas fuese eliminado o este corrupto.
-TEXTO_CONFIGURACION_POR_DEFECTO = """# Plantilla creada al no encontrar el archivo.
-
-[1001]
-"id" = "1001" # Igual que la tabla -> [1001]
-"level" = ""
-"msg" = ""
-"module_func" = ""
-
-# ---
-
-[1002]
-"id" = "1002" # Igual que la tabla -> [1002]
-"level" = "WARN"
-"msg" = "No se encontro el archivo 'plantillas_logs.toml' y fue creado nuevamente con la plantilla por defecto."
-"module_func" = "log_writer.py -> EscribirLogs.leer_plantillas_toml"
-
-[1003]
-"id" = "1003"
-"level" = "DEBUG"
-"msg" = "Informacion de 'plantillas_logs.toml' cargada correctamente."
-"module_func" = "log_writer.py -> EscribirLogs.leer_plantillas_toml"
-"""
-
-
-
-class Configuraciones():
-    def __init__(self):
-        pass
+TEXTO_CONFIGURACION_POR_DEFECTO = {
+    "1009": {"id": "1001", "level": "", "msg": "", "module_func": ""},
+    "1010": {"id": "1002", "level": "", "msg": "", "module_func": ""}
+}
 
 
 class LeerArchivosConfiguraciones():
@@ -51,7 +28,12 @@ class LeerArchivosConfiguraciones():
         try:
             ruta_archivo.touch()
         except Exception as e:
-            print(f"['1001'] - ERROR - Ocurrio un error al crear el archivo: \n{ruta_archivo}.\n--- DETALLES DEL ERROR ---\n{e}\n")
+            msg = {
+                "1001": {"id": "1001", "level": "ERROR", "msg": f"Ocurrio un error al crear el archivo: {ruta_archivo}. DETALLES: {e}", 
+                "module_func": "config.py->LeerArchivosConfiguraciones._crear_file()", "time_start": f"{datetime.now()}",
+                "time_end": f"{datetime.now()}", "execution_time_seconds": "0", "time_stamp": f"{datetime.now()}"}
+                }
+            print(msg)
 
 
     def _escribir_file(self, data: dict, ruta_archivo: Path) -> None:
@@ -59,30 +41,74 @@ class LeerArchivosConfiguraciones():
         try:
             ruta_archivo.write_text(json.dumps(data, indent=4, ensure_ascii=False), encoding='utf-8')
         except Exception as e:
-            print(f"['1002'] - ERROR - Ocurrio un error al escribir en el archivo: \n{ruta_archivo}.\n--- DETALLES DEL ERROR ---\n{e}\n")
+            msg = {
+                "1002": {"id": "1002", "level": "ERROR", "msg": f"Ocurrio un error al escribir en el archivo: {ruta_archivo}. DETALLES: {e}", 
+                "module_func": "config.py->LeerArchivosConfiguraciones._escribir_file()", "time_start": f"{datetime.now()}",
+                "time_end": f"{datetime.now()}", "execution_time_seconds": "0", "time_stamp": f"{datetime.now()}"}
+                }
+            print(msg)
 
+    def escribir_toml(self, data: dict, ruta_archivo: Path) -> None:
+        """Escribe un diccionario en un archivo TOML."""
+        try:
+            with ruta_archivo.open("wb") as f:
+                tomli_w.dump(data, f)  # dump convierte dict -> TOML y escribe
+            print(f"Archivo TOML guardado correctamente en: {ruta_archivo}")
+        except Exception as e:
+            msg = {
+                "1003": {"id": "1003", "level": "ERROR", "msg": f"Ocurrio un error al escribir en el archivo: {ruta_archivo}. DETALLES: {e}", 
+                "module_func": "config.py->LeerArchivosConfiguraciones._escribir_file()", "time_start": f"{datetime.now()}",
+                "time_end": f"{datetime.now()}", "execution_time_seconds": "0", "time_stamp": f"{datetime.now()}"}
+                }
+            print(msg)
 
     def _leer_json(self, ruta_archivo: Path) -> dict:
         """Obtiene la informacion de un archivo JSON."""
         try:
             with ruta_archivo.open('r', encoding= 'utf-8') as f:
                 data = json.load(f)
-            print(f"['1006'] - INFO - Se obtubo la informacion del archivo: \n{ruta_archivo}")
+            msg = {
+                "1004": {"id": "1004", "level": "INFO", "msg": f"Se obtubo la informacion del archivo: {ruta_archivo}. DETALLES: {e}", 
+                "module_func": "config.py->LeerArchivosConfiguraciones._leer_json()", "time_start": f"{datetime.now()}",
+                "time_end": f"{datetime.now()}", "execution_time_seconds": "0", "time_stamp": f"{datetime.now()}"}
+                }
+            print(msg)
             return data
         except (json.JSONDecodeError) as e:
-            print(f"['1003'] - ERROR - No se pudo leer el archivo: \n{ruta_archivo}.\n--- DETALLES DEL ERROR ---\n{e}\n")
+            msg = {
+                "1005": {"id": "1005", "level": "ERROR", "msg": f"No se pudo leer el archivo: {ruta_archivo}. DETALLES: {e}", 
+                "module_func": "config.py->LeerArchivosConfiguraciones._leer_json()", "time_start": f"{datetime.now()}",
+                "time_end": f"{datetime.now()}", "execution_time_seconds": "0", "time_stamp": f"{datetime.now()}"}
+                }
+            print(msg)
+            return {}
 
     def _leer_toml(self, ruta_archivo: Path) -> dict:
         """Obtiene la información de un archivo TOML"""
         try:
             with ruta_archivo.open('rb') as f:
                 data = tomllib.load(f)
-                print(f"['1007'] - INFO - Se obtubo la informacion del archivo: \n{ruta_archivo}")
+            msg = {
+                "1006": {"id": "1006", "level": "INFO", "msg": f"Se obtubo la informacion del archivo: {ruta_archivo}. DETALLES: {e}", 
+                "module_func": "config.py->LeerArchivosConfiguraciones._leer_toml()", "time_start": f"{datetime.now()}",
+                "time_end": f"{datetime.now()}", "execution_time_seconds": "0", "time_stamp": f"{datetime.now()}"}
+                }
+            print(msg)
             return data
         except (tomllib.TOMLDecodeError) as e:
-            print(f"['1004'] - No se pudo leer el archivo TOML: \n{ruta_archivo}.\n--- DETALLES DEL ERROR ---\n{e}\n")
+            msg = {
+                "1007": {"id": "1007", "level": "ERROR", "msg": f"No se pudo leer el archivo TOML: {ruta_archivo}. DETALLES: {e}", 
+                "module_func": "config.py->LeerArchivosConfiguraciones._leer_toml()", "time_start": f"{datetime.now()}",
+                "time_end": f"{datetime.now()}", "execution_time_seconds": "0", "time_stamp": f"{datetime.now()}"}
+                }
+            print(msg)
         except Exception as e:
-            print(f"['1005'] - Ocurrió un error inesperado al leer el archivo TOML: \n{ruta_archivo}.\n--- DETALLES DEL ERROR ---\n{e}\n")
+            msg = {
+                "1008": {"id": "1008", "level": "ERROR", "msg": f"Ocurrió un error inesperado al leer el archivo TOML: {ruta_archivo}. DETALLES: {e}", 
+                "module_func": "config.py->LeerArchivosConfiguraciones._leer_toml()", "time_start": f"{datetime.now()}",
+                "time_end": f"{datetime.now()}", "execution_time_seconds": "0", "time_stamp": f"{datetime.now()}"}
+                }
+            print(msg)
 
 
     def leer_json_logs(self) -> dict:
@@ -93,14 +119,14 @@ class LeerArchivosConfiguraciones():
         Retorna: 
             dict: Con la informacion del archivo.json.
         """
-        if not RUTA_LOGS_JSON.exists():
+        if not RUTA_LOGS_JSON.exists():  
             self._crear_file(RUTA_LOGS_JSON)
-            self._escribir_file({}, RUTA_LOGS_JSON)
+            self._escribir_file(JSON_VACIO_PLANTILLA, RUTA_LOGS_JSON)
 
         data = self._leer_json(RUTA_LOGS_JSON)
         return data
         
-    def escribir_json_logs(self):
+    def escribir_json_logs(self, data_log: dict):
         """
         Escribe dentro de un archivo json. 
             - Valida que el documento exite o lo crea con el archivo con el contenido.
@@ -111,9 +137,9 @@ class LeerArchivosConfiguraciones():
         """
         if not RUTA_LOGS_JSON.exists():
             self._crear_file(RUTA_LOGS_JSON)
-            self._escribir_file(self.LOG_JSON_DICT, RUTA_LOGS_JSON)
+            self._escribir_file(data_log, RUTA_LOGS_JSON)
         else:
-            self._escribir_file(self.LOG_JSON_DICT, RUTA_LOGS_JSON)
+            self._escribir_file(data_log, RUTA_LOGS_JSON)
 
 
     def leer_plantillas_toml(self):
@@ -126,7 +152,7 @@ class LeerArchivosConfiguraciones():
         """
         if not RUTA_PLANTILLAS_LOGS.exists():
             self._crear_file(RUTA_PLANTILLAS_LOGS)
-            self._escribir_file(TEXTO_CONFIGURACION_POR_DEFECTO, RUTA_PLANTILLAS_LOGS)
+            self.escribir_toml(TEXTO_CONFIGURACION_POR_DEFECTO, RUTA_PLANTILLAS_LOGS)
 
         data = self._leer_toml(RUTA_PLANTILLAS_LOGS)
         return data
