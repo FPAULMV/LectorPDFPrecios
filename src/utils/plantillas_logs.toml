@@ -1,11 +1,41 @@
-[1001]
-id = "1001"
-level = "Hola"
-msg = "Como"
-module_func = "Vas"
+[1010]
+id = "1010"
+level = "INFO"
+msg = "Conectado con exito a SQL Server"
+module_func = "servicios_sql.py-> ServiciosSql._conectar()"
 
-[1002]
-id = "1002"
-level = "1002"
-msg = "1002"
-module_func = "1002"
+[1011]
+id = "1011"
+level = "ERROR"
+msg = "No se pudo conectar a la bese de datos."
+module_func = "servicios_sql.py-> ServiciosSql._conectar()"
+
+[1012]
+id = "1012"
+level = "INFO"
+msg = "Conexión cerrada a la base de datos."
+module_func = "servicios_sql.py-> ServiciosSql._desconectar()"
+
+[1013]
+id = "1013"
+level = "INFO"
+msg = "Consulta a la BD completa, DataFrame obtenido."
+module_func = "servicios_sql.py-> ServiciosSql._consultar()"
+
+[1014]
+id = "1014"
+level = "ERROR"
+msg = "Error al consultar al realizar la consulta."
+module_func = "servicios_sql.py-> ServiciosSql._consultar()"
+
+[1015]
+id = "1015"
+level = "INFO"
+msg = "Comando ejecutado en la base de datos."
+module_func = "servicios_sql.py-> ServiciosSql._ejecutar()"
+
+[1016]
+id = "1016"
+level = "ERROR"
+msg = "Ocurrio un error al ejecutar el comando en la base de datos."
+module_func = "servicios_sql.py-> ServiciosSql._ejecutar()"

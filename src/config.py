@@ -1,12 +1,14 @@
-import versioning, json, tomllib, tomli_w
+import versioning, json, tomllib, tomli_w, os
 from pathlib import Path
 from datetime import datetime
+from dotenv import load_dotenv
 
 
 # Rutas a archivos necesarios para app. (En crudito)
 RUTA_PLANTILLAS_LOGS = Path(r"utils\plantillas_logs.toml") 
 RUTA_SETTINGS_JSON = Path(r"utils\settings.json")
 RUTA_LOGS_JSON = Path(r"..\storage\logs\log_app_.json")
+RUTA_ENV = Path(r"..\.env")
 
 #Plantilla para json vacio. 
 JSON_VACIO_PLANTILLA = {"0": {"id": "1000", "level": "INFO", "msg": "EMPTY", "module_func": "EMPTY", "time_start": "0", "time_end": "0", "execution_time_seconds": "0", "time_stamp":"0"}}
@@ -14,8 +16,11 @@ JSON_VACIO_PLANTILLA = {"0": {"id": "1000", "level": "INFO", "msg": "EMPTY", "mo
 TEXTO_CONFIGURACION_POR_DEFECTO = {
     "1009": {"id": "1001", "level": "", "msg": "", "module_func": ""},
     "1010": {"id": "1002", "level": "", "msg": "", "module_func": ""}
-}
+    }
 
+# Cargar variables de entorno .env
+load_dotenv()
+CONN_STR = os.getenv("CONN_STR")
 
 class LeerArchivosConfiguraciones():
 

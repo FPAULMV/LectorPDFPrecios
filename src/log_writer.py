@@ -9,6 +9,7 @@ CAMPOS_REQUERIDOS = ['time_stamp', 'id', 'level',
                     'time_end', 'execution_time_seconds']
 
 
+
 class EscribirLogs():
     """ Este modulo procesa los logs para el programa."""
     
@@ -46,20 +47,19 @@ class EscribirLogs():
         self.siguiente_registro += 1
         return self.siguiente_registro
         
-    def diccionario_tiempos(self, inicio: datetime = "", fin: datetime = "") -> dict:
+    def diccionario_tiempos(self, inicio: datetime = "") -> dict:
         """
         Devuelve un diccionario con los tiempos de ejecución formateados.
         """
         if not inicio:
             sys.exit("Falta la fecha de inicio.")
-        if not fin:
-            sys.exit("Falta la fecha de fin.")
+
         
-        tiempo_total = fin - inicio
+        tiempo_total = datetime.now() - inicio
         
         # Formatear las fechas
         inicio_formateado = inicio.strftime("%Y-%m-%d %H:%M:%S")
-        fin_formateado = fin.strftime("%Y-%m-%d %H:%M:%S")
+        fin_formateado = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
         # Formatear el tiempo de ejecución (segundos con milisegundos)
         segundos_totales = tiempo_total.total_seconds()
@@ -102,15 +102,14 @@ class EscribirLogs():
             print(msg)
 
 
-    def registrar_log(self, codigo_plantilla: str, inicio: datetime = "", fin: datetime = "") -> None:
+    def registrar_log(self, codigo_plantilla: str, inicio: datetime = "") -> None:
         """
         Registra un log con los datos proporcionados.
         """
-        diccionario_tiempos = self.diccionario_tiempos(inicio, fin)
+        diccionario_tiempos = self.diccionario_tiempos(inicio)
         log_salida = self.diccionario_completo(diccionario_tiempos, codigo_plantilla)
+        print(f"{log_salida}")
         DATOS_LOGS.update(log_salida)
         lector.escribir_json_logs(DATOS_LOGS)
 
 logger = EscribirLogs()
-
-
