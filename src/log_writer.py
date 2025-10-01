@@ -76,7 +76,6 @@ class EscribirLogs():
     def diccionario_completo(self, dict_tiempos: dict, codigo_plantilla: str) -> None:
         _inicio = datetime.now()
         plantilla = PLANTILLAS[codigo_plantilla]
-        print(plantilla)
         try: 
             out_dict = {
                     f"{self.siguiente_registro}" : {
@@ -108,7 +107,7 @@ class EscribirLogs():
         """
         diccionario_tiempos = self.diccionario_tiempos(inicio)
         log_salida = self.diccionario_completo(diccionario_tiempos, codigo_plantilla)
-        print(f"{log_salida}")
+        print(f"->{log_salida}\n\n")
         DATOS_LOGS.update(log_salida)
         lector.escribir_json_logs(DATOS_LOGS)
 
