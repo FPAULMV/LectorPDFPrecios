@@ -1,10 +1,10 @@
 [consultas]
 
 # Obtener clientes únicos. (Todos los registrados.)
-ObtenerClientesPortal = "SELECT DISTINCT(Id) FROM [NexusFuel].[Portal].[ClientUser]"
+ObtenerClientesPortal = "SELECT DISTINCT(Id) FROM [NexusFuel].[Portal].[ClientUser] ORDER BY [Id] DESC"
 
 # Obtener todas las fechas registradas.
-ObtenerFechasRegistradas = "SELECT DISTINCT([Fecha]) FROM [Sinergia_Aux].[dbo].[PreciosPemex] ORDER BY [Fecha] ASC"
+ObtenerFechasRegistradas = "SELECT DISTINCT([Fecha]) FROM [Sinergia_Aux].[dbo].[PreciosPemex] ORDER BY [Fecha] DESC"
 
 
 

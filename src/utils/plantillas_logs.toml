@@ -49,5 +49,138 @@ module_func = "models.py-> ConsultasManejador._consultar_clientes_portal()"
 [1020]
 id = "1020"
 level = "Error"
-msg = "Ocurrio un error los clientes activos en el portal."
+msg = "Ocurrio un error al consultar los clientes activos en el portal."
 module_func = "models.py-> ConsultasManejador._consultar_clientes_portal()"
+
+[1021]
+id = "1021"
+level = "Error"
+msg = "Falta atributo 'query' a consultar. "
+module_func = "servicios_sql.py-> ServiciosSql.consultar()"
+
+[1022]
+id = "1022"
+level = "Error"
+msg = "Falta atributo 'query' a ejecutar."
+module_func = "servicios_sql.py-> ServiciosSql.ejecutar()"
+
+[1023]
+id = "1023"
+level = "INFO"
+msg = "Se obtubo la informacion de los precios registrados."
+module_func = "models.py-> ConsultasManejador._consultar_fechas_registradas()"
+
+[1024]
+id = "1024"
+level = "Error"
+msg = "Ocurrio un error al consultar los precios registrados."
+module_func = "models.py-> ConsultasManejador._consultar_fechas_registradas()"
+
+[1025]
+id = "1025"
+level = "Error"
+msg = "DataFrames vacíos en ConsultasManejador"
+module_func = "models.py-> ConsultasManejador._validar_resultados()"
+
+[1026]
+id = "1026"
+level = "INFO"
+msg = "El directorio existe."
+module_func = "models.py-> ArchivosManejador._validar_directorio_existe()"
+
+[1027]
+id = "1027"
+level = "FATAL"
+msg = "NO EXISTE EL DIRECTORIO."
+module_func = "models.py-> ArchivosManejador._validar_directorio_existe()"
+
+[1028]
+id = "1028"
+level = "INFO"
+msg = "El directorio contiene elementos."
+module_func = "models.py-> ArchivosManejador._validar_directorio_existe()"
+
+[1029]
+id = "1029"
+level = "ERROR"
+msg = "El directorio esta vacio."
+module_func = "models.py-> ArchivosManejador._validar_directorio_vacio()"
+
+[1030]
+id = "1030"
+level = "INFO"
+msg = "Archivos obtenidos del directorio"
+module_func = "models.py-> ArchivosManejador._obtener_archivos()"
+
+[1031]
+id = "1031"
+level = "ERROR"
+msg = "Ocurrio un error mientras se obtenian los archivos del directorio."
+module_func = "models.py-> ArchivosManejador._obtener_archivos()"
+
+[1032]
+id = "1031"
+level = "INFO"
+msg = "Se obtuvieron los archivos filtrados."
+module_func = "models.py-> ArchivosManejador._filtar_archivos()"
+
+[1033]
+id = "1033"
+level = "ERROR"
+msg = "Ocurrio un error mientras se obtenian los archivos filtrados por '.pdf'."
+module_func = "models.py-> ArchivosManejador._filtar_archivos()"
+
+[1034]
+id = "1034"
+level = "INFO"
+msg = "Archivo eliminado"
+module_func = "models.py-> ArchivosManejador._filtar_archivos()"
+
+[1035]
+id = "1035"
+level = "ERROR"
+msg = "No se pudo eliminar el archivo."
+module_func = "models.py-> ArchivosManejador._filtar_archivos()"
+
+[1036]
+id = "1036"
+level = "INFO"
+msg = "Carpeta eliminada"
+module_func = "models.py-> ArchivosManejador._filtar_archivos()"
+
+[1037]
+id = "1037"
+level = "ERROR"
+msg = "No se pudo eliminar la carpeta"
+module_func = "models.py-> ArchivosManejador._filtar_archivos()"
+
+[1038]
+id = "1038"
+level = "ERROR"
+msg = "Ruta invalida"
+module_func = "models.py-> ArchivosManejador._filtar_archivos()"
+
+[1039]
+id = "1039"
+level = "ERROR"
+msg = "Ruta invalida"
+module_func = "models.py-> ArchivosManejador._filtar_archivos()"
+
+[1040]
+id = "1040"
+level = "INFO"
+msg = "Texto del .pdf extraido."
+module_func = "models.py-> ArchivosManejador._filtar_archivos()"
+
+[1041]
+id = "1041"
+level = "ERROR"
+msg = "Ocurrio un error al extraer el texto del pdf."
+module_func = "models.py-> ArchivosManejador._filtar_archivos()"
+
+[1042]
+id = "1042"
+level = "INFO"
+msg = "Metadatos del '.pdf' obtenidos."
+module_func = "models.py-> ArchivosManejador._filtar_archivos()"
+

@@ -39,6 +39,11 @@ class ServiciosSql():
         Realizar consultas a la base de datos y obtener un DataFrame.
         """
         _inicio = datetime.now()
+        query = query.strip()
+        if not query:
+            logger.registrar_log("1021", _inicio)
+            return pandas.DataFrame()
+
         try:
             cursor = self.conn.cursor()
             cursor.execute(query)
@@ -58,6 +63,10 @@ class ServiciosSql():
         Ejecuta comandos a la base de datos.
         """
         _inicio = datetime.now()
+        query = query.strip()
+        if not query:
+            logger.registrar_log("1022", _inicio)
+
         try:
             cursor = self.conn.cursor()
             cursor.execute(query)
@@ -69,8 +78,6 @@ class ServiciosSql():
             self.conn.rollback()
         finally:
             self.desconectar()
-
-
 
 sqls = ServiciosSql()
 

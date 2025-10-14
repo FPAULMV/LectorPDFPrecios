@@ -73,7 +73,7 @@ class EscribirLogs():
             "execution_time_seconds": tiempo_ejecucion
         }
 
-    def diccionario_completo(self, dict_tiempos: dict, codigo_plantilla: str) -> None:
+    def diccionario_completo(self, dict_tiempos: dict, codigo_plantilla: str, detalles: str = "") -> None:
         _inicio = datetime.now()
         plantilla = PLANTILLAS[codigo_plantilla]
         try: 
@@ -86,7 +86,8 @@ class EscribirLogs():
                         "time_start": dict_tiempos['time_start'],
                         "time_end": dict_tiempos['time_end'],
                         "execution_time_seconds": dict_tiempos['execution_time_seconds'],
-                        "time_stamp": format(datetime.now(), "%Y-%m-%d %H:%M:%S")
+                        "time_stamp": format(datetime.now(), "%Y-%m-%d %H:%M:%S"),
+                        "detalles": detalles
                         }
                 }
             self.incrementar_registro()
@@ -101,12 +102,12 @@ class EscribirLogs():
             print(msg)
 
 
-    def registrar_log(self, codigo_plantilla: str, inicio: datetime = "") -> None:
+    def registrar_log(self, codigo_plantilla: str, inicio: datetime = "", detalles: str = "") -> None:
         """
         Registra un log con los datos proporcionados.
         """
         diccionario_tiempos = self.diccionario_tiempos(inicio)
-        log_salida = self.diccionario_completo(diccionario_tiempos, codigo_plantilla)
+        log_salida = self.diccionario_completo(diccionario_tiempos, codigo_plantilla, str(detalles))
         print(f"->{log_salida}\n\n")
         DATOS_LOGS.update(log_salida)
         lector.escribir_json_logs(DATOS_LOGS)

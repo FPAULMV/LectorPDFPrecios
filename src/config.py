@@ -11,6 +11,9 @@ RUTA_LOGS_JSON = Path(r"..\storage\logs\log_app_.json")
 RUTA_QUERYS = Path(r"utils\querys.toml")
 RUTA_ENV = Path(r"..\.env")
 
+# Rutas de los directorios en uso.
+RUTA_DIRECTORIO_LECTOR = Path(r"utils\documents")
+
 #Plantilla para json vacio. 
 JSON_VACIO_PLANTILLA = {"0": {"id": "1000", "level": "INFO", "msg": "EMPTY", "module_func": "EMPTY", "time_start": "0", "time_end": "0", "execution_time_seconds": "0", "time_stamp":"0"}}
 # Texto por default en caso de que el archivo de plantillas fuese eliminado o este corrupto.
@@ -18,6 +21,10 @@ TEXTO_CONFIGURACION_POR_DEFECTO = {
     "1009": {"id": "1001", "level": "", "msg": "", "module_func": ""},
     "1010": {"id": "1002", "level": "", "msg": "", "module_func": ""}
     }
+
+# Datos del sistema.
+MSG_SALIDA_FINALIZAR = "Finalizo la ejecucion del programa."
+
 
 # Cargar variables de entorno .env
 load_dotenv()
