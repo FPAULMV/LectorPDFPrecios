@@ -1,0 +1,7 @@
+.env
+docs/
+src/__pycache__/
+*.pyc
+storage/logs/log_app_.json
+*.pdf
+aplicativo/
