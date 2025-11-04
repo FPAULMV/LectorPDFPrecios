@@ -76,6 +76,9 @@ finally:
 try:
     #Agregar Log.info
     ARCHIVOS_OBTENIDOS = [p for p in PATH_FOLDER.iterdir() if p.is_file and p.suffix.lower() == '.pdf']
+    if not ARCHIVOS_OBTENIDOS:
+        print("INFO: - No se encontraron archivos pdf para validar.\n")
+        sys.exit("-> Fin de la ejecucion del programa. <-".upper())
 except Exception as e:
     # Agregar Log.Error
     print("Hubo un error al crear la lista con las rutas a los archivos.")
