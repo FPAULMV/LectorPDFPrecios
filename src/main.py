@@ -241,8 +241,8 @@ for archivo in ARCHIVOS_OBTENIDOS:
     # Expreciones regulares que nos ayudan a definir las lineas de texto que
     # concideramos importantes.
     REG_DATOS = re.compile(
-                r"^(?P<tad>\d+)\s+(?P<nombre>[A-ZÁÉÍÓÚÑ\s]+?)\s+"
-                r"(?P<p1>\d+\.\d{5})(?:\s+(?P<p2>\d+\.\d{5}))?(?:\s+(?P<p3>\d+\.\d{5}))?$"
+                r"(?P<tad>\d+)\s+(?P<nombre>[A-ZÁÉÍÓÚÑ\s]+?)\s+"
+                r"(?P<p1>\d+\.\d{5})(?:\s+(?P<p2>\d+\.\d{5}))?(?:\s+(?P<p3>\d+\.\d{5}))?"
                 )
 
     REG_FECHA_SIMP = re.compile(
@@ -264,8 +264,8 @@ for archivo in ARCHIVOS_OBTENIDOS:
             Busca en una linea de texto coincidencias en el patron si hace matchTu ubicación
             devuelve la linea encontrada
             """
-            texto = patron.search(linea)
-            return texto.group(0) if texto else None
+            match = patron.search(linea)
+            return match.group(0) if match else None
 
     # Ordena la informacion relevante.
     try:
